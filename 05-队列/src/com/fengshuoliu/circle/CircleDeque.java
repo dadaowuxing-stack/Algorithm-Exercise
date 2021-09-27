@@ -1,5 +1,9 @@
 package com.fengshuoliu.circle;
 
+/**
+ * 双端循环队列(使用数组实现)
+ * @param <E>
+ */
 public class CircleDeque<E> {
     private int front;
     private int size;
