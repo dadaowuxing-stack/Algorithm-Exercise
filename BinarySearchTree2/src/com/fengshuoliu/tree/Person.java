@@ -1,4 +1,4 @@
-package com.fengshuoliu;
+package com.fengshuoliu.tree;
 
 public class Person implements Comparable<Person>{
     private int age;
