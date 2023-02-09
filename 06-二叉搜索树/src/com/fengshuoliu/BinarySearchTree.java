@@ -447,7 +447,7 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
      *   否则返回 false.
      * @return
      */
-    public boolean isComplete() {
+    public boolean isComplete2() {
         if (root == null) return false;
 
         Queue<Node<E>> queue = new LinkedList<>();
@@ -464,6 +464,48 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
             } else if (node.left == null && node.right != null) {
                 return false;
             } else { // 后面遍历的节点都是叶子节点
+                leaf = true;
+                if (node.left != null) {
+                    queue.offer(node.left);
+                }
+            }
+        }
+
+        return true;
+    }
+    /**
+     * 判断一棵树是否完全二叉树
+     * 如果树为空,返回 false
+     * 如果树不为空,开始层序遍历二叉树(用队列)
+     *   如果 node.left!=null && node.right!=null, 将 node.left、node.right按顺序入队;
+     *   如果 node.left==null && node.right!=null, 返回 false;
+     *   如果 node.left!=null && node.right==null 或者 node.left==null && node.right==null,
+     *   那么后面遍历的节点应该都为叶子节点,才是二叉树, 返回 true;
+     *   否则返回 false.
+     * @return
+     */
+    public boolean isComplete() {
+        if (root == null) return false;
+
+        Queue<Node<E>> queue = new LinkedList<>();
+        queue.offer(root);
+
+        boolean leaf = false;
+        while (!queue.isEmpty()) {
+            Node<E> node = queue.poll();
+            if (leaf && !node.isLeaf()) return false;
+
+            if (node.left != null) {
+                queue.offer(node.left);
+            } else if (node.right != null) {
+                // node.left == null && node.right != null
+                return false;
+            }
+            if (node.right != null) {
+                queue.offer(node.right);
+            } else {
+                // node.left == null && node.right == null
+                // node.left != null && node.right == null
                 leaf = true;
             }
         }
