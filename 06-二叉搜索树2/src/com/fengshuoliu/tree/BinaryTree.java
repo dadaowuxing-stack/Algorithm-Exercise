@@ -105,9 +105,8 @@ public class BinaryTree<E> implements BinaryTreeInfo {
     }
 
     private void preorder(Node<E> node, Visitor<E> visitor) {
-        if (node == null) return;
+        if (node == null || visitor.stop) return;
 
-        if (visitor.stop) return;
         visitor.stop = visitor.visit(node.element);
         preorder(node.left, visitor);
         preorder(node.right, visitor);
@@ -119,7 +118,7 @@ public class BinaryTree<E> implements BinaryTreeInfo {
     }
 
     private void inorder(Node<E> node, Visitor<E> visitor) {
-        if (node == null) return;
+        if (node == null || visitor.stop) return;
 
         inorder(node.left, visitor);
         if (visitor.stop) return;
@@ -133,7 +132,7 @@ public class BinaryTree<E> implements BinaryTreeInfo {
     }
 
     private void postorder(Node<E> node, Visitor<E> visitor) {
-        if (node == null) return;
+        if (node == null || visitor.stop) return;
 
         postorder(node.left, visitor);
         postorder(node.right, visitor);
