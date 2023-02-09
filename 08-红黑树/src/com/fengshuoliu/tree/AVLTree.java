@@ -6,18 +6,19 @@ import java.util.Comparator;
  * 1.添加节点
  * 可能会导致所有祖先节点都失衡
  * 只要让高度最低的失衡节点恢复平衡,整棵树就恢复平衡[仅需O(1)次调整]
- *
+ * <p>
  * 2.删除节点
  * 只可能会导致父节点失衡
  * 让父节点恢复平衡后,可能会导致更高层的祖先节点失衡[最多需要O(logn)次调整]
- *
+ * <p>
  * 平均时间复杂度
  * 搜索:O(logn)
  * 添加:O(logn),仅需 O(1)次旋转的操作
  * 删除:O(logn),最多需要 O(logn)次的旋转操作
+ *
  * @param <E>
  */
-public class AVLTree<E> extends BST<E> {
+public class AVLTree<E> extends BBST<E> {
     public AVLTree() {
         this(null);
     }
@@ -42,7 +43,7 @@ public class AVLTree<E> extends BST<E> {
     }
 
     @Override
-    protected void afterRemove(Node<E> node) {
+    protected void afterRemove(Node<E> node, Node<E> replacement) {
         while ((node = node.parent) != null) {
             if (isBalanced(node)) {
                 // 更新高度
@@ -107,117 +108,21 @@ public class AVLTree<E> extends BST<E> {
         }
     }
 
-    private void rotate(
-            Node<E> r, // 子树的根节点
-            Node<E> a, Node<E> b, Node<E> c,
-            Node<E> d,
-            Node<E> e, Node<E> f, Node<E> g) {
-        // 让 d 成为这棵子树的根节点
-        d.parent = r.parent;
-        if (r.isLeftChild()) {
-            r.parent.left = d;
-        } else if (r.isRightChild()) {
-            r.parent.right = d;
-        } else {
-            root = d;
-        }
-
-        // a, b, c
-        b.left = a;
-        if (a != null) {
-            a.parent = b;
-        }
-        b.right = c;
-        if (c != null) {
-            c.parent = b;
-        }
-        updateHeight(b);
-
-        // e, f, g
-        f.left = e;
-        if (e != null) {
-            e.parent = f;
-        }
-        f.right = g;
-        if (g != null) {
-            g.parent = f;
-        }
-
-        updateHeight(f);
-
-        // b, d, f
-        d.left = b;
-        d.right = f;
-        b.parent = d;
-        f.parent = d;
-        updateHeight(d);
-    }
-
-    /**
-     * 左旋转(单旋)
-     * g.right = p.left
-     * p.left = g
-     * 让p成为这棵树的根节点
-     * 仍然是一棵二叉搜索树
-     * 整棵树达到平衡
-     * 还需注意维护的内容:
-     * T1、p、g的 parent 属性
-     * 先后更新g、p的高度
-     *
-     * @param grand
-     */
-    private void rotateLeft(Node<E> grand) {
-        Node<E> parent = grand.right;
-        Node<E> child = parent.left;
-        grand.right = child;
-        parent.left = grand;
-
-        afterRotate(grand, parent, child);
-    }
-
-    /**
-     * 右旋转(单旋)
-     * g.left = p.right
-     * p.right = g
-     * 让p成为这棵树的根节点
-     * 仍然是一棵二叉搜索树
-     * 整棵树达到平衡
-     * 还需注意维护的内容:
-     * T1、p、g的 parent 属性
-     * 先后更新g、p的高度
-     *
-     * @param grand
-     */
-    private void rotateRight(Node<E> grand) {
-        Node<E> parent = grand.left;
-        Node<E> child = parent.right;
-        grand.left = child;
-        parent.right = grand;
-
-        afterRotate(grand, parent, child);
-    }
-
-    private void afterRotate(Node<E> grand, Node<E> parent, Node<E> child) {
-        // 让 parent 成为子树根节点
-        parent.parent = grand.parent;
-        if (grand.isLeftChild()) {
-            grand.parent.left = parent;
-        } else if (grand.isRightChild()) {
-            grand.parent.right = parent;
-        } else { // grand是根节点
-            root = parent;
-        }
-
-        // 更新 child 的 parent
-        if (child != null) {
-            child.parent = grand;
-        }
-        // 更新 grand 的 parent
-        grand.parent = parent;
-
+    @Override
+    protected void afterRotate(Node<E> grand, Node<E> parent, Node<E> child) {
+        super.afterRotate(grand, parent, child);
         // 更新高度
         updateHeight(grand);
         updateHeight(parent);
+    }
+
+    @Override
+    protected void rotate(Node<E> r, Node<E> a, Node<E> b, Node<E> c, Node<E> d, Node<E> e, Node<E> f, Node<E> g) {
+        super.rotate(r, a, b, c, d, e, f, g);
+        // 更新高度
+        updateHeight(b);
+        updateHeight(f);
+        updateHeight(d);
     }
 
     private boolean isBalanced(Node<E> node) {
