@@ -99,44 +99,49 @@ public class BinaryTree<E> implements BinaryTreeInfo {
             }
         }
     }
-    public void preorder(BST.Visitor<E> visitor) {
-
+    public void preorder(Visitor<E> visitor) {
+        if (visitor == null) return;
         preorder(root, visitor);
     }
 
-    private void preorder(Node<E> node, BST.Visitor<E> visitor) {
-        if (node == null || visitor == null) return;
+    private void preorder(Node<E> node, Visitor<E> visitor) {
+        if (node == null) return;
 
-        visitor.visit(node.element);
+        if (visitor.stop) return;
+        visitor.stop = visitor.visit(node.element);
         preorder(node.left, visitor);
         preorder(node.right, visitor);
     }
 
-    public void inorder(BST.Visitor<E> visitor) {
+    public void inorder(Visitor<E> visitor) {
+        if (visitor == null) return;
         inorder(root, visitor);
     }
 
-    private void inorder(Node<E> node, BST.Visitor<E> visitor) {
-        if (node == null || visitor == null) return;
+    private void inorder(Node<E> node, Visitor<E> visitor) {
+        if (node == null) return;
 
         inorder(node.left, visitor);
-        visitor.visit(node.element);
+        if (visitor.stop) return;
+        visitor.stop = visitor.visit(node.element);
         inorder(node.right, visitor);
     }
 
-    public void postorder(BST.Visitor<E> visitor) {
+    public void postorder(Visitor<E> visitor) {
+        if (visitor == null) return;
         postorder(root, visitor);
     }
 
-    private void postorder(Node<E> node, BST.Visitor<E> visitor) {
-        if (node == null || visitor == null) return;
+    private void postorder(Node<E> node, Visitor<E> visitor) {
+        if (node == null) return;
 
         postorder(node.left, visitor);
         postorder(node.right, visitor);
-        visitor.visit(node.element);
+        if (visitor.stop) return;
+        visitor.stop = visitor.visit(node.element);
     }
 
-    public void levelOrder(BST.Visitor<E> visitor) {
+    public void levelOrder(Visitor<E> visitor) {
         if (root == null || visitor == null) return;
 
         Queue<Node<E>> queue = new LinkedList<>();
@@ -146,7 +151,7 @@ public class BinaryTree<E> implements BinaryTreeInfo {
             Node<E> node = queue.poll();
 
             //System.out.println(node.element);
-            visitor.visit(node.element);
+            if(visitor.visit(node.element)) return;
 
             if (node.left != null) {
                 queue.offer(node.left);
@@ -342,8 +347,14 @@ public class BinaryTree<E> implements BinaryTreeInfo {
         return 1 + Math.max(height(node.left), height(node.right));
     }
 
-    public static interface  Visitor<E> {
-        void visit(E element);
+    public static abstract class  Visitor<E> {
+        boolean stop;
+        /**
+         *
+         * @param element
+         * @return 如果返回 true,就代表停止遍历
+         */
+        abstract boolean visit(E element);
     }
 
     /**
