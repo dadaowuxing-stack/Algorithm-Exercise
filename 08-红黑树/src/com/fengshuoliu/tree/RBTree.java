@@ -2,6 +2,20 @@ package com.fengshuoliu.tree;
 
 import java.util.Comparator;
 
+/**
+ * 红黑树(Red Black Tree)
+ * 红黑树也是一种自平衡的二叉树
+ * 以前也叫做平衡二叉B树(Symmetric Binary B-tree)
+ * 红黑树必须满足以下 5 条性质:
+ * 1.节点是 RED 或者 BLACK
+ * 2.根节点是 BLACK
+ * 3.叶子节点(外部节点,空节点)都是 BLACK
+ * 4.RED 节点的子节点都是 BLACK
+ *   RED 节点的 parent 都是 BLACK
+ *   从根节点到叶子节点的所有路径上不能有 2 个连续的 RED 节点
+ * 5.从任一节点到叶子节点的所有路径都包含相同数目的 BLACK 节点
+ * @param <E>
+ */
 public class RBTree<E> extends BBST<E> {
     private static final boolean RED = false;
     private static final boolean BLACK = true;

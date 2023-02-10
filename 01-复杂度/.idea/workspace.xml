@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="68f3aa45-2a27-47be-a17d-fd4e5e22228e" name="Default Changelist" comment="" />
+    <list default="true" id="68f3aa45-2a27-47be-a17d-fd4e5e22228e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../08-红黑树/src/com/fengshuoliu/tree/RBTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/../08-红黑树/src/com/fengshuoliu/tree/RBTree.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -71,11 +73,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/liufengshuo/workspace/IntelliJ/Algorithm-Exercise/01-复杂度",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="com.fengshuoliu.Main" />
@@ -98,6 +104,7 @@
       <updated>1627879864731</updated>
       <workItem from="1627879866925" duration="2000" />
       <workItem from="1631339539878" duration="2000" />
+      <workItem from="1676013254882" duration="2000" />
     </task>
     <servers />
   </component>
