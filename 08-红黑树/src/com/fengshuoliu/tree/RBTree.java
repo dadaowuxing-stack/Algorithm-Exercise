@@ -14,6 +14,11 @@ import java.util.Comparator;
  *   RED 节点的 parent 都是 BLACK
  *   从根节点到叶子节点的所有路径上不能有 2 个连续的 RED 节点
  * 5.从任一节点到叶子节点的所有路径都包含相同数目的 BLACK 节点
+ * 这五条性质,可以保证红黑树等价于4阶B树
+ * 相比AVL树,红黑树的平衡标准比较宽松:没有一条路径会大于其他路径的2倍
+ * 是一种弱平衡、黑高度平衡
+ * 红黑树的最大高度 2*log2(n+1),依然是 O(logn)级别
+ * 平均时间复杂度:搜索O(logn); 添加O(logn),O(1)次的旋转操作;删除O(logn),O(1)次的旋转操作.
  * @param <E>
  */
 public class RBTree<E> extends BBST<E> {
