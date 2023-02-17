@@ -67,22 +67,37 @@ public class BinaryHeap<E> implements Heap<E>, BinaryTreeInfo {
         return null;
     }
 
-    private void siftUp(int index) {
-        E e = elements[index];
-        while (index > 0) {
-            int pIndex = (index - 1) >> 1;
-            E p = elements[pIndex];
-            if (compare(e, p) <= 0) return;
+//    private void siftUp(int index) {
+//        E e = elements[index];
+//        while (index > 0) {
+//            int pIndex = (index - 1) >> 1;
+//            E p = elements[pIndex];
+//            if (compare(e, p) <= 0) return;
+//
+//            // 交换 index,pIndex位置的内容
+//            E tmp = elements[index];
+//            elements[index] = elements[pIndex];
+//            elements[pIndex] = tmp;
+//
+//            // 重新赋值 index
+//            index = pIndex;
+//        }
+//    }
+private void siftUp(int index) {
+    E e = elements[index];
+    while (index > 0) {
+        int pIndex = (index - 1) >> 1;
+        E p = elements[pIndex];
+        if (compare(e, p) <= 0) break;
 
-            // 交换 index,pIndex位置的内容
-            E tmp = elements[index];
-            elements[index] = elements[pIndex];
-            elements[pIndex] = tmp;
+        // 将父元素存储在 index 位置
+        elements[index] = p;
 
-            // 重新赋值 index
-            index = pIndex;
-        }
+        // 重新赋值 index
+        index = pIndex;
     }
+    elements[index] = e;
+}
 
     private int compare(E e1, E e2) {
         return comparator != null ? comparator.compare(e1, e2) : ((Comparable<E>) e1).compareTo(e2);
