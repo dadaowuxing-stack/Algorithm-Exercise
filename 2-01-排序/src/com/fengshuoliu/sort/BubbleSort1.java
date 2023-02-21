@@ -6,7 +6,7 @@ package com.fengshuoliu.sort;
  * 执行完一轮后,最末尾那个元素就是最大的元素
  * ②.忽略 ① 中曾经找到的最大元素,重复执行步骤①,直到全部元素有序
  */
-public class BubbleSort1 extends Sort{
+public class BubbleSort1<T extends Comparable<T>> extends Sort<T> {
     @Override
     protected void sort() {
         for (int end = array.length - 1; end > 0; end--) {

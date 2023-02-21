@@ -8,7 +8,7 @@ package com.fengshuoliu.sort;
  *
  * 选择排序的交换次数要远远少于冒泡排序,平均性能优于冒泡排序
  */
-public class SelectionSort extends Sort {
+public class SelectionSort<T extends Comparable<T>> extends Sort<T> {
 
     @Override
     protected void sort() {

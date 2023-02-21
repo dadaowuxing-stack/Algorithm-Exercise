@@ -1,15 +1,17 @@
 package com.fengshuoliu.sort;
 
+import com.fengshuoliu.Student;
+
 import java.text.DecimalFormat;
 
-public abstract class Sort implements Comparable<Sort> {
-    protected Integer[] array;
+public abstract class Sort<T extends Comparable<T>> implements Comparable<Sort<T>> {
+    protected T[] array;
     protected int cmpCount; // 比较次数
     protected int swapCount; // 交换次数
     private long time;
     private DecimalFormat fmt = new DecimalFormat("#.00");
 
-    public void sort(Integer[] array) {
+    public void sort(T[] array) {
         if (array == null || array.length < 2) return;
 
         this.array = array;
@@ -20,8 +22,8 @@ public abstract class Sort implements Comparable<Sort> {
     }
 
     @Override
-    public int compareTo(Sort o) {
-        int result = (int)(time - o.time);
+    public int compareTo(Sort<T> o) {
+        int result = (int) (time - o.time);
         if (result != 0) return result;
 
         result = cmpCount - o.cmpCount;
@@ -43,27 +45,30 @@ public abstract class Sort implements Comparable<Sort> {
      */
     protected int cmp(int index1, int index2) {
         cmpCount++;
-        return array[index1] - array[index2];
+        return array[index1].compareTo(array[index2]);
     }
 
-    protected int cmpElement(Integer v1, Integer v2) {
+    protected int cmp(T v1, T v2) {
         cmpCount++;
-        return v1 - v2;
+        return v1.compareTo(v2);
     }
 
     protected void swap(int index1, int index2) {
         swapCount++;
-        int tmp = array[index1];
+        T tmp = array[index1];
         array[index1] = array[index2];
         array[index2] = tmp;
     }
 
     @Override
     public String toString() {
+
         String timeStr = "耗时：" + (time / 1000.0) + "s(" + time + "ms)";
         String compareCountStr = "比较：" + numberString(cmpCount);
         String swapCountStr = "交换：" + numberString(swapCount);
+        String stableStr = "稳定性：" + isStable() + "";
         return "【" + getClass().getSimpleName() + "】\n"
+                + stableStr + "\t"
                 + timeStr + " \t"
                 + compareCountStr + "\t "
                 + swapCountStr + "\n"
@@ -76,5 +81,21 @@ public abstract class Sort implements Comparable<Sort> {
 
         if (number < 100000000) return fmt.format(number / 10000.0) + "万";
         return fmt.format(number / 100000000.0) + "亿";
+    }
+
+    private boolean isStable() {
+        Student[] students = new Student[20];
+        for (int i = 0; i < students.length; i++) {
+            students[i] = new Student(i * 10, 10);
+        }
+        sort((T[])students);
+
+        for (int i = 1; i < students.length; i++) {
+            int score = students[i].score;
+            int prevScore = students[i - 1].score;
+            if (score != prevScore + 10) return false;
+        }
+
+        return true;
     }
 }

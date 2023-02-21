@@ -3,7 +3,6 @@ package com.fengshuoliu;
 import com.fengshuoliu.sort.*;
 import com.fengshuoliu.tools.Asserts;
 import com.fengshuoliu.tools.Integers;
-import com.fengshuoliu.tools.Times;
 
 import java.util.Arrays;
 
@@ -31,7 +30,13 @@ public class Main {
     public static void main(String[] args) {
         Integer[] array = Integers.random(10000, 1, 20000);
 
-        testSort(array, new BubbleSort1(), new BubbleSort2(), new HeapSort(), new SelectionSort(), new BubbleSort3());
+        testSort(array,
+                new InsertionSort1(),
+                new InsertionSort2(),
+                new InsertionSort3(),
+                new HeapSort(),
+                new SelectionSort(),
+                new BubbleSort3());
 //        Times.test("HeapSort", () -> {
 //            new HeapSort().sort(array);
 //        });
@@ -58,7 +63,9 @@ public class Main {
 
     static void testSort(Integer[] array, Sort... sorts) {
         for (Sort sort : sorts) {
-            sort.sort(Integers.copy(array));
+            Integer[] newArray = Integers.copy(array);
+            sort.sort(newArray);
+            Asserts.test(Integers.isAscOrder(newArray));
         }
 
         Arrays.sort(sorts);
