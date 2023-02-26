@@ -31,6 +31,9 @@ public class Main {
         Integer[] array = Integers.random(10000, 1, 20000);
 
         testSort(array,
+                new ShellSort(),
+                new QuickSort(),
+                new MergeSort(),
                 new InsertionSort1(),
                 new InsertionSort2(),
                 new InsertionSort3(),
