@@ -32,6 +32,7 @@ public class Main {
         Integer[] array = Integers.random(10000, 1, 20000);
 
         testSort(array,
+                new RadixSort(),
                 new CountingSort(),
                 new ShellSort(),
                 new QuickSort(),
