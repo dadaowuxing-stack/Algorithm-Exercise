@@ -1,6 +1,7 @@
 package com.fengshuoliu;
 
 import com.fengshuoliu.sort.*;
+import com.fengshuoliu.sort.cmp.*;
 import com.fengshuoliu.tools.Asserts;
 import com.fengshuoliu.tools.Integers;
 
@@ -31,6 +32,7 @@ public class Main {
         Integer[] array = Integers.random(10000, 1, 20000);
 
         testSort(array,
+                new CountingSort(),
                 new ShellSort(),
                 new QuickSort(),
                 new MergeSort(),

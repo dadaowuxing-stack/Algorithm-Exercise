@@ -1,4 +1,6 @@
-package com.fengshuoliu.sort;
+package com.fengshuoliu.sort.cmp;
+
+import com.fengshuoliu.sort.Sort;
 
 /**
  * 插入排序(Insertion Sort)类似于扑克牌的排序

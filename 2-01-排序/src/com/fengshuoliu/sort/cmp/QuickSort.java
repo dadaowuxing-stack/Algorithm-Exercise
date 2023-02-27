@@ -1,4 +1,6 @@
-package com.fengshuoliu.sort;
+package com.fengshuoliu.sort.cmp;
+
+import com.fengshuoliu.sort.Sort;
 
 /**
  * 快速排序(Quick Sort)

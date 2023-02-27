@@ -1,4 +1,6 @@
-package com.fengshuoliu.sort;
+package com.fengshuoliu.sort.cmp;
+
+import com.fengshuoliu.sort.Sort;
 
 /**
  * 插入排序-优化:思路是将[交换]转为[挪动]
@@ -7,7 +9,7 @@ package com.fengshuoliu.sort;
  * ③ 将待插入元素放到最终合适位置
  * @param <T>
  */
-public class InsertionSort2<T extends Comparable<T>> extends Sort<T>{
+public class InsertionSort2<T extends Comparable<T>> extends Sort<T> {
     @Override
     protected void sort() {
         for (int begin = 1; begin < array.length; begin++) {

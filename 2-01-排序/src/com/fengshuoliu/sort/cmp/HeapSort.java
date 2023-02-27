@@ -1,4 +1,6 @@
-package com.fengshuoliu.sort;
+package com.fengshuoliu.sort.cmp;
+
+import com.fengshuoliu.sort.Sort;
 
 /**
  * 3.堆排序(Heap sort):堆排序可以认为是对选择排序的一种优化

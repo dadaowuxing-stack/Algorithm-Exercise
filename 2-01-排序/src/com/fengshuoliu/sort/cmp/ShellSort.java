@@ -1,4 +1,6 @@
-package com.fengshuoliu.sort;
+package com.fengshuoliu.sort.cmp;
+
+import com.fengshuoliu.sort.Sort;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

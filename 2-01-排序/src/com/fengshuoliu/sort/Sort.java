@@ -1,6 +1,7 @@
 package com.fengshuoliu.sort;
 
 import com.fengshuoliu.Student;
+import com.fengshuoliu.sort.cmp.ShellSort;
 
 import java.text.DecimalFormat;
 
@@ -84,6 +85,7 @@ public abstract class Sort<T extends Comparable<T>> implements Comparable<Sort<T
     }
 
     private boolean isStable() {
+        if (this instanceof CountingSort) return false;
         if (this instanceof ShellSort) return false;
         Student[] students = new Student[20];
         for (int i = 0; i < students.length; i++) {

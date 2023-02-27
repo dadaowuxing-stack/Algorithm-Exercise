@@ -1,4 +1,6 @@
-package com.fengshuoliu.sort;
+package com.fengshuoliu.sort.cmp;
+
+import com.fengshuoliu.sort.Sort;
 
 public class BubbleSort3<T extends Comparable<T>> extends Sort<T> {
     @Override
