@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a633e1c9-099d-413a-a7b3-cd7135f55fe1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../2-01-排序/src/com/fengshuoliu/sort/BucketSort.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/fengshuoliu/Data.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/fengshuoliu/MinHeap.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/fengshuoliu/UnionFind.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/fengshuoliu/graph/Graph.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/fengshuoliu/graph/ListGraph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/fengshuoliu/graph/ListGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/fengshuoliu/graph/ListGraph.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +61,8 @@
       <updated>1678068694068</updated>
       <workItem from="1678068695471" duration="3000" />
       <workItem from="1678068802138" duration="6251000" />
-      <workItem from="1678082888043" duration="9578000" />
+      <workItem from="1678082888043" duration="15336000" />
+      <workItem from="1678167489629" duration="4438000" />
     </task>
     <servers />
   </component>

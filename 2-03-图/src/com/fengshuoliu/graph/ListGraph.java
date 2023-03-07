@@ -399,17 +399,22 @@ public class ListGraph<V, E> extends Graph<V, E> {
         return dijkstra(begin);
     }
 
+    /**
+     * Bellman-Ford算法原理:对所有的边进行 V - 1 次松弛操作(V 是节点数量), 得到所有可能的最短路径
+     * @param begin
+     * @return
+     */
     private Map<V, PathInfo<V, E>> bellmanFord(V begin) {
         Vertex<V, E> beginVertex = vertices.get(begin);
         if (beginVertex == null) return null;
 
-        Map<V, PathInfo<V, E>> selectedPaths = new HashMap<>();
+        Map<V, PathInfo<V, E>> selectedPaths = new HashMap<>();   // 已经确定的路径
         selectedPaths.put(begin, new PathInfo<>(weightManager.zero()));
 
         int count = vertices.size() - 1;
-        for (int i = 0; i < count; i++) { // v - 1 次
+        for (int i = 0; i < count; i++) { // 执行 v - 1 次 松弛
             for (Edge<V, E> edge : edges) {
-                PathInfo<V, E> fromPath = selectedPaths.get(edge.from.value);
+                PathInfo<V, E> fromPath = selectedPaths.get(edge.from.value); // edge的from的最短路径信息
                 if (fromPath == null) continue;
                 relax(edge, fromPath, selectedPaths);
             }
@@ -430,7 +435,7 @@ public class ListGraph<V, E> extends Graph<V, E> {
 
 
     /**
-     * 松弛
+     * 松弛操作:更新源点到另一个点的最短路径
      *
      * @param edge     需要进行松弛的边
      * @param fromPath edge的from的最短路径信息
@@ -461,7 +466,7 @@ public class ListGraph<V, E> extends Graph<V, E> {
         Vertex<V, E> beginVertex = vertices.get(begin);
         if (beginVertex == null) return null;
 
-        Map<V, PathInfo<V, E>> selectedPaths = new HashMap<>();
+        Map<V, PathInfo<V, E>> selectedPaths = new HashMap<>(); // 选中的(已经确定的)路径
         Map<Vertex<V, E>, PathInfo<V, E>> paths = new HashMap<>();
         paths.put(beginVertex, new PathInfo<>(weightManager.zero()));
         // 初始化paths
@@ -473,9 +478,8 @@ public class ListGraph<V, E> extends Graph<V, E> {
 //		}
 
         while (!paths.isEmpty()) {
-            Entry<Vertex<V, E>, PathInfo<V, E>> minEntry = getMinPath(paths);
-            // minVertex离开桌面
-            Vertex<V, E> minVertex = minEntry.getKey();
+            Entry<Vertex<V, E>, PathInfo<V, E>> minEntry = getMinPath(paths); // 从paths中挑一个最小的路径出来
+            Vertex<V, E> minVertex = minEntry.getKey(); // minVertex离开桌面
             PathInfo<V, E> minPath = minEntry.getValue();
             selectedPaths.put(minVertex.value, minPath);
             paths.remove(minVertex);
@@ -492,7 +496,7 @@ public class ListGraph<V, E> extends Graph<V, E> {
     }
 
     /**
-     * 松弛
+     * 松弛操作的意义:尝试找出最短路径
      *
      * @param edge     需要进行松弛的边
      * @param fromPath edge的from的最短路径信息
@@ -535,6 +539,14 @@ public class ListGraph<V, E> extends Graph<V, E> {
         return minEntry;
     }
 
+    /**
+     * Floyd属于多源最短路径算法,能够求出任意 2 个顶点之间的最短路径,支持负权边
+     * 算法原理:
+     * 从任意顶点 i 到任意顶点 j 的最短路径不外乎两种可能
+     * ①直接从 i 到 j
+     * ②从 i 经过若干个顶点到 j
+     * @return
+     */
     @Override
     public Map<V, Map<V, PathInfo<V, E>>> shortestPath() {
         Map<V, Map<V, PathInfo<V, E>>> paths = new HashMap<>();
