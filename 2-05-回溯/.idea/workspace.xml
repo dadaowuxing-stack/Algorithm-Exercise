@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e23a9614-2480-4a95-a84c-bfdcb553131e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/fengshuoliu/Queens.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/fengshuoliu/Queens2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/fengshuoliu/Queens3.java" afterDir="false" />
-    </list>
+    <list default="true" id="e23a9614-2480-4a95-a84c-bfdcb553131e" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -114,7 +110,7 @@
       <option name="presentableId" value="Default" />
       <updated>1678239012210</updated>
       <workItem from="1678239014269" duration="4000" />
-      <workItem from="1678239069086" duration="6963000" />
+      <workItem from="1678239069086" duration="6997000" />
     </task>
     <servers />
   </component>
