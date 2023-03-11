@@ -1,6 +1,7 @@
 package com.fengshuoliu.sort;
 
 import com.fengshuoliu.Student;
+import com.fengshuoliu.sort.cmp.SelectionSort;
 import com.fengshuoliu.sort.cmp.ShellSort;
 
 import java.text.DecimalFormat;
@@ -88,6 +89,7 @@ public abstract class Sort<T extends Comparable<T>> implements Comparable<Sort<T
         if (this instanceof RadixSort) return true;
         if (this instanceof CountingSort) return true;
         if (this instanceof ShellSort) return false;
+        if (this instanceof SelectionSort) return false;
         Student[] students = new Student[20];
         for (int i = 0; i < students.length; i++) {
             students[i] = new Student(i * 10, 10);

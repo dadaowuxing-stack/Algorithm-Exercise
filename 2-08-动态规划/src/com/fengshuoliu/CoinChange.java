@@ -1,8 +1,19 @@
 package com.fengshuoliu;
 
+/**
+ * 找零钱
+ * ◼ 假设有25分、20分、5分、1分的硬币，现要找给客户41分的零钱，如何办到硬币个数最少?
+ * https://leetcode-cn.com/problems/coin-change/
+ */
 public class CoinChange {
     public static void main(String[] args) {
         System.out.println(coins5(41, new int[] {1, 5, 25, 20}));
+        // dp(41) = 凑够41需要的最少硬币数量 = min { dp(40), dp(36), dp(16), dp(21) } + 1
+        // dp(41 - 1) = dp(40) = 凑够40需要的最少硬币数量
+        // dp(41 - 5) = dp(36) = 凑够36需要的最少硬币数量
+        // dp(41 - 25) = dp(16) = 凑够16需要的最少硬币数量
+        // dp(41 - 20) = dp(21) = 凑够21需要的最少硬币数量
+        // min { dp(40), dp(36), dp(16), dp(21) } + 1
     }
 
     /**

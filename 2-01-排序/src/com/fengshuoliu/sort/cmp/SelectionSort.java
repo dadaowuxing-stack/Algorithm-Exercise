@@ -18,7 +18,7 @@ public class SelectionSort<T extends Comparable<T>> extends Sort<T> {
         for (int end = array.length - 1; end > 0; end--) {
             int maxIndex = 0;
             for (int begin = 1; begin <= end; begin++) {
-                if (cmp(maxIndex, begin) <= 0) {// 稳定的排序,这里要用等于
+                if (cmp(maxIndex, begin) < 0) {// 不稳定排序
                     maxIndex = begin;
                 }
             }
