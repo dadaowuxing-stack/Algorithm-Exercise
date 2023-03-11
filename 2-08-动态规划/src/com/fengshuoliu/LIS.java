@@ -18,6 +18,14 @@ public class LIS {
      * 将它压在(从左边数过来)第一个牌顶 ≥ 它的牌堆上面
      * 如果找不到牌顶 ≥ 它的牌堆，就在最右边新建一个牌堆，将它放入这个新牌堆中
      * ◼ 当处理完所有牌，最终牌堆的数量就是最长上升子序列的长度
+     *
+     * 最长上升子序列 – 二分搜索 – 思路
+     * ◼思路(假设数组是 nums，也就是最初的牌数组)
+     * top[i] 是第 i 个牌堆的牌顶，len 是牌堆的数量，初始值为 0
+     * 遍历每一张牌 num
+     * ✓利用二分搜索找出 num 最终要放入的牌堆位置 index
+     * ✓num 作为第 index 个牌堆的牌顶，top[index] = num
+     * ✓如果 index 等于 len，相当于新建一个牌堆，牌堆数量 +1，也就是 len++
      */
     static int lengthOfLIS(int[] nums) {
         if (nums == null || nums.length == 0) return 0;
